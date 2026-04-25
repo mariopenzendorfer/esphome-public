@@ -1,0 +1,42 @@
+packages:
+  home_assistant_voice: github://esphome/home-assistant-voice-pe/home-assistant-voice.yaml
+
+esphome:
+  name: "home-assistant-voice-${mac}"
+  friendly_name: "Home Assistant Voice ${mac}"
+  name_add_mac_suffix: false
+  
+api:
+  encryption:
+    key: ${api_key}
+
+wifi:
+  ssid: !secret wifi_ssid
+  password: !secret wifi_password
+
+binary_sensor:
+  - id: !remove jack_plugged
+  - platform: switch
+    id: jack_plugged
+    source_id: speaker_disable_switch
+    
+media_player:
+  - platform: sendspin
+    id: !extend sendspin_group_media_player
+    on_state:
+      then:
+        - if:
+            condition:
+              lambda: 'return id(sendspin_group_media_player).state == media_player::MediaPlayerState::MEDIA_PLAYER_STATE_PLAYING;'
+            then:
+              - sendspin.media_source.enable_static_delay_adjustment:
+              - switch.turn_on: speaker_disable_switch
+            else:
+              - sendspin.media_source.disable_static_delay_adjustment:
+              - switch.turn_off: speaker_disable_switch
+
+switch:
+  - platform: gpio
+    id: speaker_disable_switch
+    name: "Disable Speaker"
+    pin: GPIO17

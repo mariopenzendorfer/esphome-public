@@ -54,5 +54,8 @@ esp32_camera:
   max_framerate: 24 fps
   resolution: 640X480
   frame_buffer_count: 2
-    
+
+sensor:
+  - platform: internal_temperature
+    name: "Internal Temperature"
     

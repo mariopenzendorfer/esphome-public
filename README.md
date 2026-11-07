@@ -4,22 +4,22 @@
 
 The following secions describe each individual component.
 
-Note that if you need a specific version oft the component, you can use the following code example instead of the slim package reference.
+Note that if you need a specific version of the component or a special refresh interval, you can use the following code example instead of the slim package reference.
 
 ```yaml
 packages:
-  home-assistant-voice:
+  my-component:
     url: https://github.com/mariopenzendorfer/esphome-public
     ref: # preferred commit version or tag
-    files:
-      - base/[component].yaml
+    file: base/[component].yaml
+    refresh: 0s
 ```
 
 ## home-assistant-voice
 
 Supported hardware: [Home Assistant Voice PE](https://www.home-assistant.io/voice-pe/)
 
-Test with ESPHome build: [2026.5.1](https://esphome.io/changelog/2026.5.0/)
+Test with ESPHome build: [2026.10.2](https://esphome.io/changelog/2026.10.0/)
 
 ### What is it?
 

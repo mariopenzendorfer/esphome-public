@@ -1,3 +1,6 @@
+substitutions:
+  wake_word_triggered_sound_file: https://github.com/mariopenzendorfer/esphome-public/raw/main/sounds/wake_word_triggered.flac
+
 packages:
   home_assistant_voice: github://esphome/home-assistant-voice-pe/home-assistant-voice.yaml
 
@@ -32,7 +35,8 @@ media_player:
               - sendspin.media_source.enable_static_delay_adjustment:
               - switch.turn_on: speaker_disable_switch
             else:
-              - sendspin.media_source.disable_static_delay_adjustment:
+              - delay: 500ms
+              - sendspin.media_source.disable_static_delay_adjustment:              
               - switch.turn_off: speaker_disable_switch
 
 switch:

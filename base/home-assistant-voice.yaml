@@ -2,7 +2,10 @@ substitutions:
   wake_word_triggered_sound_file: https://github.com/mariopenzendorfer/esphome-public/raw/main/sounds/wake_word_triggered.flac
 
 packages:
-  home_assistant_voice: github://esphome/home-assistant-voice-pe/home-assistant-voice.yaml
+  home-assistant-voice:
+    url: https://github.com/esphome/home-assistant-voice-pe
+    file: home-assistant-voice.yaml
+    refresh: 0s
 
 esphome:
   name: "home-assistant-voice-${mac}"
